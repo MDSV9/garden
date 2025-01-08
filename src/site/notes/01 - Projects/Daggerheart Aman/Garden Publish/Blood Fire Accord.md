@@ -2,7 +2,7 @@
 {"dg-publish":true,"permalink":"/01-projects/daggerheart-aman/garden-publish/blood-fire-accord/"}
 ---
 
-
+# The Blood Fire Accord
 ## **Introduction**
 
 The Blood Fire Accord is a landmark agreement signed by five clans of the Werewood following the devastating Blood Fires that ravaged the forest. The clans sought to establish a framework for cooperation and mutual support to aid in the recovery and ensure the survival of the woods and its inhabitants.
