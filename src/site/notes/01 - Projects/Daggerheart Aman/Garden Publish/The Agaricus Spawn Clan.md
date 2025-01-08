@@ -48,9 +48,9 @@ The Agaricus Spawn's culture is deeply intertwined with the Werewood environment
 - **Focus on Survival:** The constant struggle for survival has shaped the Fungril's pragmatic and cautious approach to the world. The rigid social structure and the emphasis on efficiency are designed to ensure the colony's long-term survival.
 ## History
 
-According to Speaker Portobello Vedigaster, the Houses were once separate colonies. The [[01 - Projects/Daggerheart Aman/Garden Publish/Blood Fire Accord\|Blood Fire Accord]] united them after a devastating fire nearly consumed the Weirwood.
+According to Speaker Portobello Vedigaster, the Houses were once separate colonies. The [[01 - Projects/Daggerheart Aman/Garden Publish/Blood Fire Accord\|Blood Fire Accord]] united them after a devastating fire nearly consumed the Werewood.
 
-Given the lack of a military, the Agaricus Spawn relied on intelligence to navigate relationships with other Weirwood clans before the General Council's establishment. Much of their history remains a mystery, as past Speakers and Councils deemed it best for only the Speaker to be privy to this information to maintain colony efficiency. The exodus of a forgotten House is often cited as a cautionary tale.
+Given the lack of a military, the Agaricus Spawn relied on intelligence to navigate relationships with other Werewood clans before the General Council's establishment. Much of their history remains a mystery, as past Speakers and Councils deemed it best for only the Speaker to be privy to this information to maintain colony efficiency. The exodus of a forgotten House is often cited as a cautionary tale.
 
 ## Challenges and Threats
 
@@ -60,4 +60,4 @@ The Fungril Colony faces a number of challenges:
 
 - **Internal Dissent:** The desire for individual freedom and the potential for social unrest are ongoing threats to the existing social order. The rigid social structure, which limits individual choice and mobility, can breed resentment and a desire for change.
 
-- **External Threats:** As an integral part of the Weirwood, the Agaricus Spawn is intricately woven into the geopolitical conflicts that arise within the forest. Their lack of mobility makes them vulnerable to threats arising from these conflicts, as they are unable to easily relocate if their current location becomes unsafe.
+- **External Threats:** As an integral part of the Werewood, the Agaricus Spawn is intricately woven into the geopolitical conflicts that arise within the forest. Their lack of mobility makes them vulnerable to threats arising from these conflicts, as they are unable to easily relocate if their current location becomes unsafe.
