@@ -2,6 +2,8 @@
 {"dg-publish":true,"permalink":"/01-projects/daggerheart-aman/garden-publish/the-agaricus-spawn-clan/","tags":["gardenEntry"]}
 ---
 
+![DALL·E 2025-01-07 12.55.44 - A medieval-style traditional shield divided into four quadrants, each with a unique color and emblem. The top-left quadrant is gold and features a sym.webp|800](/img/user/01%20-%20Projects/Daggerheart%20Aman/Garden%20Publish/attachments/DALL%C2%B7E%202025-01-07%2012.55.44%20-%20A%20medieval-style%20traditional%20shield%20divided%20into%20four%20quadrants,%20each%20with%20a%20unique%20color%20and%20emblem.%20The%20top-left%20quadrant%20is%20gold%20and%20features%20a%20sym.webp)
+
 ## Introduction
 
 The Agaricus Spawn is a colony of fungril people residing deep beneath Cleyra's Topiary. Their society revolves around four specialized Houses, each playing a vital role in the colony's survival and prosperity.
