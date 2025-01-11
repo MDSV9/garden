@@ -6,6 +6,9 @@
 
 Born into the esteemed Columnar House of the Agaricus Spawn, Aman was destined for a life of toil beneath the earth. As a Saprotroph, his role was clear: maintain and excavate the ever-expanding tunnel network that served as the colony's home. Though he diligently fulfilled his duties, protecting the delicate digging apparatus from the curious prods of subterranean creatures, Aman never truly fit the mold of a typical Columnar. His physique, leaner and more agile than his burly brethren, often drew unwanted attention. While he maintained a facade of indifference, the constant teasing about his "un-Columnar" physique gnawed at him, a persistent thorn in his otherwise content existence.
 
+![Aman.png|500](/img/user/02%20-%20Areas/Daggerheart/Garden%20Publish/attachments/Aman.png)
+
+
 Aman did have some friends who tolerated him and his slightly unconventional behavior. Iangei, known as Angel, and Bellui, known as Billi, were fellow Saprotrophs assigned to protect the digging process. They had been raised together, their minds interfaced with the Dreaming Caps under the guidance of the same Pileus, and placed into the same working group. Angel and Billi often compensated for Aman's shortcomings, though there was no deep camaraderie between them. Despite their efforts, the leader of the House would often reprimand the entire group for Aman's "insufficient" work.
 
 Aman continued to fulfill his duties, striving for the colony's survival, as it was the only life he knew and the only life he believed in. Then came the surface missions, which were part of the protocol taught to him. These forays into the unfamiliar world above, with their vibrant hues and strange, alien creatures, offered a stark contrast to the monotony of tunnel life, a new experience that introduced Aman to new ways of learning outside of the Dreaming Caps.
