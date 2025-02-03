@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/03-resources/daggerheart/garden-publish/arvensis-aman-agaricus/","tags":["Character","Fungril"]}
+{"dg-publish":true,"dg-path":"Daggerheart/Arvensis 'Aman' Agaricus.md","permalink":"/daggerheart/arvensis-aman-agaricus/","tags":["Character","Fungril"]}
 ---
 
 # Who is Aman?

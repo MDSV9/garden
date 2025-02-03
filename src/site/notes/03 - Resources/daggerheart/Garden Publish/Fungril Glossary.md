@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/03-resources/daggerheart/garden-publish/fungril-glossary/","tags":["Worldbuilding","Glossary"]}
+{"dg-publish":true,"dg-path":"Daggerheart/Fungril Glossary.md","permalink":"/daggerheart/fungril-glossary/","tags":["Worldbuilding","Glossary"]}
 ---
 
 # Fungril Glossary

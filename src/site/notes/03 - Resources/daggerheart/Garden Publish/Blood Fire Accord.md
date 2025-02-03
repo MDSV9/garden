@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/03-resources/daggerheart/garden-publish/blood-fire-accord/","tags":["Worldbuilding"]}
+{"dg-publish":true,"dg-path":"Daggerheart/Blood Fire Accord.md","permalink":"/daggerheart/blood-fire-accord/","tags":["Worldbuilding"]}
 ---
 
 # The Blood Fire Accord

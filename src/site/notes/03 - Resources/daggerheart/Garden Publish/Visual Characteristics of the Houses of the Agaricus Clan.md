@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/03-resources/daggerheart/garden-publish/visual-characteristics-of-the-houses-of-the-agaricus-clan/","tags":["Worldbuilding","Character"]}
+{"dg-publish":true,"dg-path":"Daggerheart/Visual Characteristics of the Houses of the Agaricus Clan.md","permalink":"/daggerheart/visual-characteristics-of-the-houses-of-the-agaricus-clan/","tags":["Worldbuilding","Character"]}
 ---
 
 # Visual Characteristics of the Houses of [[03 - Resources/daggerheart/Garden Publish/The Agaricus Spawn Clan\|The Agaricus Spawn Clan]]

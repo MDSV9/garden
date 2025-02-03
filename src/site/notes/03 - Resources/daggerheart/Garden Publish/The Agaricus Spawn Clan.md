@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/03-resources/daggerheart/garden-publish/the-agaricus-spawn-clan/","tags":["Worldbuilding"]}
+{"dg-publish":true,"dg-path":"Daggerheart/The Agaricus Spawn Clan.md","permalink":"/daggerheart/the-agaricus-spawn-clan/","tags":["Worldbuilding"]}
 ---
 
 # The Agaricus Spawn Clan
