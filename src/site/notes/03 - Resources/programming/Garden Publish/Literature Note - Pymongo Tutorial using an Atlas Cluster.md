@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/03-resources/programming/garden-publish/literature-note-pymongo-tutorial-using-an-atlas-cluster/","tags":["mongodb","fastapi","Tutorial"]}
+{"dg-publish":true,"dg-path":"Programming Tutorials/Literature Note - Pymongo Tutorial using an Atlas Cluster.md","permalink":"/programming-tutorials/literature-note-pymongo-tutorial-using-an-atlas-cluster/","tags":["mongodb","fastapi","Tutorial"]}
 ---
 
 # What is a CRUD application?
