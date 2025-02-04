@@ -2,10 +2,9 @@
 {"dg-publish":true,"permalink":"/03-resources/programming/garden-publish/literature-note-pymongo-tutorial-using-an-atlas-cluster/","tags":["mongodb","fastapi","Tutorial"]}
 ---
 
+# What is a CRUD application?
 
-# What is a CRUD application
-
-CRUD in different terms:
+CRUD, in different terms:
 
 | CRUD   | SQL    | HTTPS                           |
 | ------ | ------ | ------------------------------- |
@@ -16,18 +15,17 @@ CRUD in different terms:
 
 ### In Concept
 
-Data can put in storage
+Data can be stored.
 
-- Such storage must allow its data to be _readable_ and _updatable_
-- Before such actions can be taken the storage location must _allocate_ and _initialize_ the content
-- And at some later point the storage can be _deleted_ and _deallocated_
+- Such storage must allow its data to be _readable_ and _updatable_.
+- Before such actions can be taken, the storage location must _allocate_ and _initialize_ the content.
+- At some later point, the storage can be _deleted_ and _deallocated_.
 
-These make the basic operations of storage management **CRUD**
+These constitute the basic operations of storage management: **CRUD**.
 
 ## Learning MongoDB with pymongo
 
-This project focuses on learning by doing, we will follow the tutorial found in mongodb's website.
-For now we will use the cloud solution MongoDB.Atlas but in future projects we will use docker and self hosting solutions
+This project focuses on learning by doing. We will follow the tutorial found on MongoDB's website. For now, we will use the cloud solution, MongoDB Atlas, but in future projects, we will use Docker and self-hosting solutions.
 
 > [!note] Sources
 > https://www.mongodb.com/resources/languages/pymongo-tutorial
@@ -41,63 +39,80 @@ For now we will use the cloud solution MongoDB.Atlas but in future projects we w
 
 ## Project Setup
 
-Created a conda virtual env with the required packets, and created a mongodb account to use Atlas. For future projects I will try to use native MongoDB soulutions.
-Using the `python-dotenv` we establish our variables to connect to the Atlas Cluster
+A conda virtual environment was created with the required packages, and a MongoDB account was created to use Atlas. For future projects, I will try to use native MongoDB solutions.
 
-- ATLAS_URI -> the connection string used by `pymongo` to connect to the cluster
-- DB_NAME -> The name of the database we are going to create the CRUD actions
+Using `python-dotenv`, we establish our variables to connect to the Atlas Cluster:
 
-## models.py
+- `ATLAS_URI` -> The connection string used by `pymongo` to connect to the cluster.
+- `DB_NAME` -> The name of the database where we will create the CRUD actions.
 
-Using `pydantic`'s `BaseModel` we create data classes for data validation.
-Inside each model we include another class _Config_ which is acceced by `fastapi` for the documentation using `RestApi`.
+We also create the following files: `models.py`, `routes.py`, and `main.py`
 
-We create 2 models:
+## `models.py`
 
-1. Book
+Using `pydantic`'s `BaseModel` and the (deprecated) `class Config`, we create data classes for data validation. The `Config` class is used to determine some behavior of the model, and `fastapi` then leverages the model structure for documentation, leveraging `json_schema_extra` to add details like examples.
 
-- This model validates the book data when creating a new book, takes in title, author, and synopsis.
+>[!note]- config
+> While this example uses a deprecated configuration class, it is important to note that it can be updated by replacing the class with the following:
+>```python
+>	model_config = ConfigDict(
+>        populate_by_name=True,
+>        json_schema_extra={
+>            "example": {
+>                "_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
+>                "title": "Don Quixote",
+>                "author": "Miguel de Cervantes",
+>                "synopsis": "..."
+>            }
+>        }
+>    )
+>```
 
-2. BookUpdate
+We create two models:
 
-- Used to validate data before updating a book inside the database
+1. `Book`
 
-## routes.py
+- This model validates the book data when creating a new book, taking in the title, author, and synopsis.
 
-This file creates all the CRUD functions we need for the application, we use FastAPI to do most of the heavy lifting for url routing and page formating(docs)
-While pydantic takes care of the data validation from the imported models from the models.py file
+2. `BookUpdate`
+
+- Used to validate data before updating a book in the database.
+
+## `routes.py`
+
+This file creates all the CRUD functions needed for the application. FastAPI handles URL routing, request processing, and automatic interactive API documentation (docs), while Pydantic, through the imported models, handles data validation.
 
 ### CREATE
 
 `@router.post("/", response_description = ..., status_code = status.HTTP_201_CREATED, response_model = Book)`
-Here we define our post request at the root path, if the function below is executed correctly the API return a 201 code.
+
+Here, we define our POST request at the root path. If the function below is executed correctly, the API returns a 201 code.
 
 ```python
-def create_book(request: Request, book: Book = body(...)):
-  book = jsonable_encoder(book)
-  new_book = request.app.database["books"].insert_one(book)
-  created_book = request.app.database["books"].find_one(
-    {"_id":new_book.inserted_id}
-  )
+def create_book(request: Request, book: Book = Body(...)):
+    book = jsonable_encoder(book)
+    new_book = request.app.database["books"].insert_one(book)
+    created_book = request.app.database["books"].find_one(
+        {"_id": new_book.inserted_id}
+    )
+    return created_book
 ```
 
-First we define the function to create a new Book entry in the database, using the Request clas from FastAPI we obtain the HTTP response, from which we extract the body using the Body function from the fast api package.
-After pydantic verifies the data for the book created, we then change it to a format that mongodb is able to handle(JSON).
-We then acces the database named _books_ and use the `insert_one()` function from pymongo to add the new book to the collection.
+The function `create_book` creates a new `Book` entry in the database. FastAPI automatically parses the incoming request body according to the `Book` model and Pydantic validates the data. The validated `Book` object is converted to a JSON-serializable dictionary, and then inserted into the "books" collection in the database using pymongo's `insert_one()` method.
 
-> [!note] new_book = ?
-> Bad naming -> new_book does not contain the book we inserted into the database, instead it contains the ruturn type InsertOneResult from the insert_one() funtion.
-> This type of object has 2 attributes:
+> [!note] `new_book = ?` 
+> Poor naming: `new_book` does not contain the book we inserted into the database; instead, it contains the return type `InsertOneResult` from the `insert_one()` function. This type of object has two attributes:
 >
-> - inserted_id: the inserted document's id
-> - acknowledged: the response to the write operation
+> - `inserted_id`: The inserted document's ID.
+> - `acknowledged`: The response to the write operation.
 
-Finally we query to find the inserted book in the database, and return its id. (My guess is as a check that it was inserted correctly)
+Finally, we query to find the inserted book and return it as to check for a successful insertion.
 
 ### READ
 
 `@router.get("/", response_description="...", response_model=List[Book])`
-Here we tell fastapi that calling the function will handle get requests to the root path, and we specify the type of object we will return in the body of the request.
+
+Here, we tell FastAPI that calling the function will handle GET requests to the root path, and we specify the type of object we will return in the body of the request.
 
 ```python
 def list_books(request: Request):
@@ -105,7 +120,7 @@ def list_books(request: Request):
     return books
 ```
 
-Our read function, which lists the first 100 books of our database. But what if we want a specific book?
+Our `list_books` function, which lists the first 100 books in our database. But what if we want a specific book?
 
 ```python
 @router.get("/{id}", response_description="Get a single book by id", response_model=Book)
@@ -115,15 +130,15 @@ def find_book(id: str, request: Request):
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {id} not found")
 ```
 
-Let's break it down line by line.
-First we define the route, which will call this function while at the same time sets the value of _id_
-Then we define our function and pass it the _id_ of the book we are trying to find.
-Within our if statement we make use of the `:=` operator, which assigns and checks the validity of our statement at the same time. If our `find_one` query return something we then return the book. Otherwise we return an HTTP exception showing that the id for this book does not match with any within our database.
+
+Let's break it down line by line. First, the route definition captures the `id` from the URL path. Then, the `find_book` function takes the `id` as a parameter. The code uses the walrus operator to attempt to retrieve the book from the database using pymongo's `find_one` function. If a book with the given `id` is found, it is assigned to the `book` variable and returned. If no book is found, an `HTTPException` with a 404 Not Found status is raised.
 
 ### UPDATE
 
 `@router.put("/{id}", response_description="...", response_model=Book)`
-Same as before we specify that the following funcition will make a _PUT_ request to the indicated path, and assign the value to _id_
+
+As before, we specify that the following function will make a `PUT` request to the indicated path and assign the value to `id`.
+
 
 ```python
 def update_book(id: str, request: Request, book: BookUpdate = Body(...)):
@@ -144,14 +159,12 @@ def update_book(id: str, request: Request, book: BookUpdate = Body(...)):
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {id} not found")
 ```
 
-For this function we use pymongo's `update_one(filter,update)` function and the `$set` operator, this allows us to simploify the process.
-Firs we generate a new dictionary using the data validated from the BookUpdate pydantic model, then if the new dictionary is not empty we call the function, filtering by the _id_ assigned before.
-We then use the operator `$set` which changes the values of each key found in the BookUpdate model passed into the function.
+The `update_book` function uses `update_one` with the `$set` operator (implicitly) to update a book. It first filters the input `BookUpdate` model, removing `None` values to allow for partial updates. It then performs the update based on the provided `id`. After the update attempt, it retrieves the updated book.
 
-> [!note] $set
-> This operation will only update the given fields of the book passed into it. That is why we filtered None values before.
+> [!note] `$set` 
+>- This operator will only update the given fields of the book passed into it. That is why we filtered `None` values before.
 
-Finally we return the updated entry of the book, if it still exists in the database. The reason for the final _raise_ is for the fringe case where the updated entry is deleted in between the update and find call.
+The final `raise` handles the case where no book with the given `id` was found, either initially or if it was somehow deleted between the update and the subsequent retrieval.
 
 ### DELETE
 
@@ -167,16 +180,19 @@ def delete_book(id: str, request: Request, response: Response):
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {id} not found")
 ```
 
-One of the biggest differences between this function and the rest is the use of the _Response_ class, which helps us to convey that the function was executed correctly to the client.
-We also use of the delete_one returned object attributes to check if our operation was succesful.
+The `delete_book` function uses the `Response` class to explicitly set the HTTP status code. It uses the `delete_result.deleted_count` to verify successful deletion and, if successful, sets the status code to 204 No Content, which is common for successful DELETE operations.
 
-## main.py
+## `main.py`
 
-Here we put everything together.
+Here, we put everything together.
+
 `from routes import router as book_router`
-We import the router we created in _routes.py_ which contains all of the CRUD functions we created earlier.
+
+We import the router we created in `routes.py`, which contains all of the CRUD functions we created earlier.
+
 `config = dotenv_values(".env")`
-We read the environmental variables that we need to connect to the mongodb cluster.
+
+We read the environmental variables that we need to connect to the MongoDB cluster.
 
 ```python
 #Deprecated on_event
@@ -187,11 +203,11 @@ def startup_db_client():
     print("Connected to the MongoDB database!")
 ```
 
-Our function for initializing our site, we start by createing MongoClient (connecting to the cluster). Then we specify which of the collections we are going to connect to, and finally we show that we are connected.
+Our function for initializing our site. We start by creating a `MongoClient` (connecting to the cluster). Then, we specify database we are going to connect to, and finally, we indicate that we are connected.
 
-> [!info] app.mongodb_client
-> We store the client instance as part of the app object(FastAPI) which makes the app available from the application.
-> This allows us to put the CRUD functions in the _router.py_ file instead
+> [!info] `app.mongodb_client` 
+>- When we store the `MongoClient` instance as part of the `app` object (FastAPI), we make it globally available. This allows us to put the CRUD functions in the `router.py` file, where we access the database using the `request.app` object.
+
 
 ```python
 #Deprecated on_event
@@ -200,11 +216,10 @@ def shutdown_db_client():
     app.mongodb_client.close()
 ```
 
-Simple, close the client connection when shutting down the application.
+Simple: close the client connection when shutting down the application.
 
 ```python
-app.include_router(book_router, tags = ["books"], prefix="/book")
+app.include_router(book_router, tags=["books"], prefix="/book")
 ```
 
-Since we created the routing operations in a different file we need to indicate as souch witht he _include_router_ function.
-For better readablitiy of our API we tag it under _books_ and we add a prefix to the roting operations such that if in the _routes.py_ file they are on path `/` they will be instead be in path `/book/`
+Since we created the routing operations in a different file, we need to indicate as such with the `include_router` function. For better readability of our API, we tag it under `books`, and we add a prefix to the routing operations such that if, in the `routes.py` file, they are on path `/`, they will instead be on path `/book/`.
